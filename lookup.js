@@ -2,13 +2,14 @@
 
 var locationOne; 
 var locationTwo; 
-var centerPoint = {}; 
-var coords = [];
-var i = 0; 
-
+var centerPoint; 
+var coords;
+var i; 
 
 $("#locationInput").submit(function(e) {
 	e.preventDefault();
+	i = 0; 
+	coords = [];
 	assignURLs();
 	retreive();
 });
@@ -34,6 +35,7 @@ function callback(){
 	i++;
 	if (i === 2) {
 		calcCenterpoint();
+		initMap();
 	} 
 	}; 
 };
