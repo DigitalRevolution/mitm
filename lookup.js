@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Return Lat, Lon</title>
-  </head> 
-  <body>
+'use strict';
 
-<form Id = "locationInput" action = "#"> 
-  Location One: <input type="text" Id="locationOne"><br>
-  Location Two: <input type="text" Id="locationTwo"><br>
-  <input name="submit" type="submit" class="btn" value="Select"/>
-</form> 
-
-  </body> 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script>
 var locationOne; 
 var locationTwo; 
-var centerPoint; 
+var centerPoint = {}; 
 var coords = [];
 var i = 0; 
 
@@ -38,7 +24,7 @@ function retreive(){
 };
 
 function retreiveCoords(location){
-	var locationJSON = $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+ location +',+CA&key=AIzaSyDhEvi1ghIVk_3yQZElcWLblzpMpAH2Ios', callback);
+	var locationJSON = $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+ location +'&key=AIzaSyDhEvi1ghIVk_3yQZElcWLblzpMpAH2Ios', callback);
 
 function callback(){
 	var lat = locationJSON.responseJSON.results[0].geometry.location.lat;
@@ -55,14 +41,11 @@ function callback(){
 var calcCenterpoint = function() {
 	var centerLat = (coords[0].lat + coords[1].lat)/2;
 	var centerLng = (coords[0].lng + coords[1].lng)/2;
-
-	console.log(centerLat + " ," + centerLng); 
+	centerPoint = {"lat":centerLat, "lng":centerLng}
+	console.log(centerPoint); 
 };
 
 function coordsConstructor(lat, lng){
 	this.lat = lat;
 	this.lng = lng; 
 }; 
-
-  </script> 
-</html> 

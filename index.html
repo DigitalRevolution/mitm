@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <style>
       html, body {
-        height: 100%;
+        height: 90%;
         margin: 0;
         padding: 0;
       }
@@ -23,19 +23,18 @@
       var infowindow;
 
       function initMap() {
-        var pyrmont = {lat: -33.867, lng: 151.195};
 
         map = new google.maps.Map(document.getElementById('map'), {
-          center: pyrmont,
+          center: centerPoint,
           zoom: 15
         });
 
         infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
-          location: pyrmont,
-          radius: 500,
-          type: ['store']
+          location: centerPoint,
+          radius: 1000,
+          type: ['food']
         }, callback);
       }
 
@@ -63,9 +62,15 @@
     </script>
   </head>
   <body>
-  	<h3>Meet me in the middle</h3> 
+  	<form Id = "locationInput" action = "#"> 
+  	Location One: <input type="text" Id="locationOne"><br>
+  	Location Two: <input type="text" Id="locationTwo"><br>
+  	<input name="submit" type="submit" class="btn" value="Select"/>
+	</form> 
     <div id="map"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
    	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmH0riaU4A0Q8lApvyRWPCtUCOYjHbPQQ&libraries=places"></script>
+   	<script src="./lookup.js"></script>
   </body>
 </html>
 
