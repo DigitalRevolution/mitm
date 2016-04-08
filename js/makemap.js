@@ -1,6 +1,6 @@
 'use strict';
 var map;
-      var infowindow;
+var infowindow;
 
       function initMap() {
 
@@ -11,10 +11,11 @@ var map;
 
         infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
+
         service.nearbySearch({
           location: centerPoint,
           radius: 1000,
-          type: ['food']
+          type: ['restaurant']
         }, callback);
       }
 
@@ -34,7 +35,12 @@ var map;
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
+          infowindow.setContent('Name: ' + place.name + '</br>' + 
+                                'Address: ' + place.vicinity + '</br>' + 
+                                'Rating: ' + place.rating + '</br>' +
+                                '<a href = "https://www.google.com/maps/place/' + encodeURIComponent(place.name) + '" target = _blank>Get Directions</a>'
+                                );
+
           infowindow.open(map, this);
         });
       }
